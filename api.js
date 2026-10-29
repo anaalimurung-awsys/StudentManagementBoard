@@ -13,7 +13,7 @@ const generateId = () => {
  * Mock database.
  * An array that stores objects
  */
-export let mockStudentDB = [{
+export let mockStudentDB = [/*{
         id: Date.now(),
         firstName: 'Leslie',
         lastName: 'Andrews',
@@ -24,7 +24,7 @@ export let mockStudentDB = [{
         firstName: 'Emma',
         lastName: 'Baumgarten',
         email: 'emma.baumgarten@example.com'
-    }
+    }*/
 ];
 
 /**
