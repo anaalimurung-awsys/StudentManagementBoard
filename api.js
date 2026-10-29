@@ -2,12 +2,19 @@
  * Initializes api.js.
  */
 
+let lastId = 0;
+const generateId = () => {
+    const currId = Date.now();
+    lastId = currId > lastId ? currId : lastId + 1;
+    return lastId;
+}
+
 /**
  * Mock database.
  * An array that stores objects
  */
-export let mockStudentDB = [/* {
-    /*    id: Date.now(),
+export let mockStudentDB = [{
+        id: Date.now(),
         firstName: 'Leslie',
         lastName: 'Andrews',
         email: 'leslie.andrews@example.com'
@@ -17,7 +24,7 @@ export let mockStudentDB = [/* {
         firstName: 'Emma',
         lastName: 'Baumgarten',
         email: 'emma.baumgarten@example.com'
-    }*/
+    }
 ];
 
 /**
@@ -31,11 +38,11 @@ export function getStudentsAPI(){
 /**
  * Function to add new data.
  * @param {*} newStudentData 
- * @returns 
+ * @returns studentData
  */
 export function addStudentsAPI(newStudentData){
     const studentData = {
-        id: Date.now() + 1,
+        id: generateId(),
         ...newStudentData
     };
 

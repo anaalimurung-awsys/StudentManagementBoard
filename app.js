@@ -3,10 +3,7 @@
  */
 import { getStudentsAPI, addStudentsAPI } from "./api.js";
 
-const validName = /^[\p{L}][\p{L}\d\s'.-]*$/u;
-const validEmailIn = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-const isValidName = (name) => validName.test(name);
+const validEmailIn = /^[^\s@]+@[^\s@]+\.com$/i;;
 const isValidEmail = (email) => validEmailIn.test(email);
 
 let localStudents = [];
@@ -14,6 +11,11 @@ let localStudents = [];
 const studentForm = document.getElementById("studentForm");
 const studentTableBody = document.getElementById("studentTableBody");
 
+/**
+ * Function to dynamically create HTML table rows
+ * @param {*} dataArray 
+ * @returns ''
+ */
 const renderTable = (dataArray) => {
   studentTableBody.innerHTML = ""; 
 
@@ -42,13 +44,16 @@ const renderTable = (dataArray) => {
   });
 };
 
+/**
+ * Function to validate inputs.
+ * @param {*} stud 
+ * @returns ""
+ */
 const validateStudent = (stud) => {
   if(!stud.firstName || !stud.lastName || !stud.email) {
     return "All input fields must be filled out!"
   }
 
-  if (!isValidName(stud.firstName)) return "First name must not be null";
-  if (!isValidName(stud.lastName)) return "It must not be null";
   if (!isValidEmail(stud.email)) return"Must be a valid email address";
 
   return "";
@@ -64,11 +69,10 @@ studentForm.addEventListener("submit", (event) => {
   };
 
   const error = validateStudent(studentData);
-  
-  if (!studentData.firstName || !studentData.lastName || !studentData.email) {
-    alert("All input fields must be filled out.");
+  if (error){
+    alert(error);
     return;
-  }
+  } 
 
   addStudentsAPI(studentData);       // POST
   localStudents = getStudentsAPI(); 
