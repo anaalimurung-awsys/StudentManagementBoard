@@ -6,8 +6,8 @@
  * Mock database.
  * An array that stores objects
  */
-export let mockStudentDB = [{
-        id: Date.now(),
+export let mockStudentDB = [/* {
+    /*    id: Date.now(),
         firstName: 'Leslie',
         lastName: 'Andrews',
         email: 'leslie.andrews@example.com'
@@ -17,7 +17,7 @@ export let mockStudentDB = [{
         firstName: 'Emma',
         lastName: 'Baumgarten',
         email: 'emma.baumgarten@example.com'
-    }
+    }*/
 ];
 
 /**

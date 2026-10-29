@@ -7,13 +7,6 @@ const studentForm = document.getElementById("studentForm");
 const studentTableBody = document.getElementById("studentTableBody");
 
 
-
-
-
-
-
-// ---------- Arrow Functions ----------
-
 // Builds the table rows from an array of students
 const renderTable = (dataArray) => {
   studentTableBody.innerHTML = ""; // clear old rows first
