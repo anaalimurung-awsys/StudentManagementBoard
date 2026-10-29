@@ -1,4 +1,6 @@
-// app.js
+/**
+ * Importing from api.js
+ */
 import { getStudentsAPI, addStudentsAPI } from "./api.js";
 
 let localStudents = [];
@@ -6,12 +8,10 @@ let localStudents = [];
 const studentForm = document.getElementById("studentForm");
 const studentTableBody = document.getElementById("studentTableBody");
 
-
-// Builds the table rows from an array of students
+// 
 const renderTable = (dataArray) => {
-  studentTableBody.innerHTML = ""; // clear old rows first
+  studentTableBody.innerHTML = ""; 
 
-  // Empty state
   if (!dataArray || dataArray.length === 0) {
     const row = document.createElement("tr");
     const cell = document.createElement("td");
@@ -22,10 +22,10 @@ const renderTable = (dataArray) => {
     return;
   }
 
-  dataArray.forEach((student, index) => {
+  dataArray.forEach((student, i) => {
     const row = document.createElement("tr");
 
-    [index + 1, student.firstName, student.lastName, student.email].forEach(
+    [i + 1, student.firstName, student.lastName, student.email].forEach(
       (value) => {
         const cell = document.createElement("td");
         cell.textContent = value;
@@ -38,7 +38,7 @@ const renderTable = (dataArray) => {
 };
 
 studentForm.addEventListener("submit", (event) => {
-  event.preventDefault(); // stop the page from reloading
+  event.preventDefault(); // flush data during refresh
 
   const studentData = {
     firstName: document.getElementById("firstName").value.trim(),
@@ -46,17 +46,17 @@ studentForm.addEventListener("submit", (event) => {
     email: document.getElementById("email").value.trim(),
   };
 
-  // Client-side validation
+
   if (!studentData.firstName || !studentData.lastName || !studentData.email) {
     alert("All input fields must be filled out.");
     return;
   }
 
   addStudentsAPI(studentData);       // POST
-  localStudents = getStudentsAPI();  // re-fetch the updated list
-  renderTable(localStudents);        // refresh the table
+  localStudents = getStudentsAPI(); 
+  renderTable(localStudents);        
 
-  studentForm.reset();               // clear all input fields
+  studentForm.reset();
 });
 
 const initApp = () => {
