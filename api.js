@@ -1,24 +1,41 @@
+/**
+ * Initializes api.js.
+ */
+
+/**
+ * Mock database.
+ * An array that stores objects
+ */
 export let mockStudentDB = [{
         id: Date.now(),
-        firstName: 'placeholder',
-        lastName: 'placeholder',
-        email: 'place@holder.com'
+        firstName: 'Leslie',
+        lastName: 'Andrews',
+        email: 'leslie.andrews@example.com'
     },
     {
         id: Date.now() + 1,
-        firstName: 'holderplace',
-        lastName: 'holderplace',
-        email: 'holder@place.com'
+        firstName: 'Emma',
+        lastName: 'Baumgarten',
+        email: 'emma.baumgarten@example.com'
     }
 ];
 
-export function getStudentAPI(){
+/**
+ * Function to get the items in database.
+ * @returns mockStudentDB
+ */
+export function getStudentsAPI(){
     return mockStudentDB;
 };
 
+/**
+ * Function to add new data.
+ * @param {*} newStudentData 
+ * @returns 
+ */
 export function addStudentsAPI(newStudentData){
     const studentData = {
-        id: Date.now,
+        id: Date.now() + 1,
         ...newStudentData
     };
 
@@ -26,4 +43,3 @@ export function addStudentsAPI(newStudentData){
 
     return studentData;
 }
-
