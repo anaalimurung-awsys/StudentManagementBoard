@@ -3,12 +3,17 @@
  */
 import { getStudentsAPI, addStudentsAPI } from "./api.js";
 
+const validName = /^[\p{L}][\p{L}\d\s'.-]*$/u;
+const validEmailIn = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+const isValidName = (name) => validName.test(name);
+const isValidEmail = (email) => validEmailIn.test(email);
+
 let localStudents = [];
 
 const studentForm = document.getElementById("studentForm");
 const studentTableBody = document.getElementById("studentTableBody");
 
-// 
 const renderTable = (dataArray) => {
   studentTableBody.innerHTML = ""; 
 
@@ -37,6 +42,18 @@ const renderTable = (dataArray) => {
   });
 };
 
+const validateStudent = (stud) => {
+  if(!stud.firstName || !stud.lastName || !stud.email) {
+    return "All input fields must be filled out!"
+  }
+
+  if (!isValidName(stud.firstName)) return "First name must not be null";
+  if (!isValidName(stud.lastName)) return "It must not be null";
+  if (!isValidEmail(stud.email)) return"Must be a valid email address";
+
+  return "";
+};
+
 studentForm.addEventListener("submit", (event) => {
   event.preventDefault(); // flush data during refresh
 
@@ -46,7 +63,8 @@ studentForm.addEventListener("submit", (event) => {
     email: document.getElementById("email").value.trim(),
   };
 
-
+  const error = validateStudent(studentData);
+  
   if (!studentData.firstName || !studentData.lastName || !studentData.email) {
     alert("All input fields must be filled out.");
     return;
